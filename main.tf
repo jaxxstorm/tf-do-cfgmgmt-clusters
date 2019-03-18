@@ -5,16 +5,17 @@ locals {
 module "dev1_cluster" {
   source                     = "github.com/jaxxstorm/terraform-do-kubernetes"
   do_token                   = "${var.do_token}"
-  do_region                  = "ams3"
+  do_region                  = "sfo2"
   cluster_name               = "dev1"
   cluster_default_node_size  = "${var.node_size}"
   cluster_default_node_count = "${var.node_count}"
   kubeconfig_path            = "${local.kubeconfig_path}/dev1.yaml"
 }
 
+
 resource "null_resource" "kubeconfig_dev1" {
   provisioner "local-exec" {
-    command = "kubectl config rename-context do-ams3-dev1 lbriggs@dev1"
+    command = "kubectl config rename-context do-sfo2-dev1 lbriggs@dev1"
   }
 
   depends_on = ["module.dev1_cluster"]
@@ -23,7 +24,7 @@ resource "null_resource" "kubeconfig_dev1" {
 module "prod1_cluster" {
   source                     = "github.com/jaxxstorm/terraform-do-kubernetes"
   do_token                   = "${var.do_token}"
-  do_region                  = "ams3"
+  do_region                  = "sfo2"
   cluster_name               = "prod1"
   cluster_default_node_size  = "${var.node_size}"
   cluster_default_node_count = "${var.node_count}"
@@ -32,7 +33,7 @@ module "prod1_cluster" {
 
 resource "null_resource" "kubeconfig_prod1" {
   provisioner "local-exec" {
-    command = "kubectl config rename-context do-ams3-prod1 lbriggs@prod1"
+    command = "kubectl config rename-context do-sfo2-prod1 lbriggs@prod1"
   }
 
   depends_on = ["module.prod1_cluster"]
@@ -41,7 +42,7 @@ resource "null_resource" "kubeconfig_prod1" {
 module "prod2_cluster" {
   source                     = "github.com/jaxxstorm/terraform-do-kubernetes"
   do_token                   = "${var.do_token}"
-  do_region                  = "lon1"
+  do_region                  = "nyc1"
   cluster_name               = "prod2"
   cluster_default_node_size  = "${var.node_size}"
   cluster_default_node_count = "${var.node_count}"
@@ -50,7 +51,7 @@ module "prod2_cluster" {
 
 resource "null_resource" "kubeconfig_prod2" {
   provisioner "local-exec" {
-    command = "kubectl config rename-context do-lon1-prod2 lbriggs@prod2"
+    command = "kubectl config rename-context do-nyc1-prod2 lbriggs@prod2"
   }
 
   depends_on = ["module.prod2_cluster"]
