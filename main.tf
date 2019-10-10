@@ -10,6 +10,7 @@ module "dev1_cluster" {
   cluster_default_node_size  = "${var.node_size}"
   cluster_default_node_count = "${var.node_count}"
   kubeconfig_path            = "${local.kubeconfig_path}/dev1.yaml"
+  cluster_version            = var.cluster_version
 }
 
 
@@ -21,14 +22,16 @@ module "prod1_cluster" {
   cluster_default_node_size  = "${var.node_size}"
   cluster_default_node_count = "${var.node_count}"
   kubeconfig_path            = "${local.kubeconfig_path}/prod1.yaml"
+  cluster_version            = var.cluster_version
 }
 
 module "prod2_cluster" {
   source                     = "github.com/jaxxstorm/terraform-do-kubernetes"
   do_token                   = "${var.do_token}"
-  do_region                  = "nyc1"
+  do_region                  = "sgp1"
   cluster_name               = "prod2"
   cluster_default_node_size  = "${var.node_size}"
   cluster_default_node_count = "${var.node_count}"
   kubeconfig_path            = "${local.kubeconfig_path}/prod2.yaml"
+  cluster_version            = var.cluster_version
 }

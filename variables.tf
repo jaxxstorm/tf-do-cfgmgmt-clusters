@@ -15,3 +15,5 @@ variable "node_count" {
 }
 
 variable "dev_kubeconfig_path" {}
+
+variable "cluster_version" {}
